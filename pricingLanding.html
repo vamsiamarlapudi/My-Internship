@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Landing Page</title>
+    <style>
+        .container{
+            width: 100%;
+            height: 800px;
+            background: linear-gradient(45deg,white, rgb(17, 17, 85), white);
+        }
+        .link{
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 40px 0px 0px;
+        }
+        a{
+            padding: 15px;
+            text-decoration: none;
+            color: rgb(13, 41, 91);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        a:hover{
+            color: rgb(1, 87, 31);
+            text-decoration: underline;
+            text-shadow: 2px 2px 5px rgb(164, 223, 164);
+        }
+        .heading{
+            display: flex;
+            justify-content: center;
+            font-family: monospace;
+            font-size: 60px;
+            color: whitesmoke;
+            font-weight: bold;
+
+        }
+        .range{
+            display: flex;
+            justify-content: center;
+            gap: 150px;
+        }
+        .name{
+            padding: 0px 120px;
+            color: whitesmoke;
+            font-family: Arial, Helvetica, serif;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #basic{
+            background: linear-gradient(225deg,rgb(32, 24, 84),rgb(1, 220, 254));
+            padding: 5px 60px;
+            border-radius: 15px;
+            z-index: 1;
+        }
+        #standard,#premium{
+            background: linear-gradient(225deg,rgb(32, 24, 84),rgb(1, 220, 254));
+            padding: 5px 40px;
+            border-radius: 15px;
+            z-index: 1;
+        }
+        #info-container{
+            display: flex;
+            justify-content: center;
+            gap: 118px;
+            margin-top: -15px; 
+        }
+        .number{
+            display: flex;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+            font-size: 30px;
+            font-weight: bold;
+            border-bottom: 5px dotted black;
+        }
+        #info-basic,#info-standard,#info-premium{
+            background-color: aliceblue;
+            border-radius: 25px;
+            padding: 25px;
+        }
+        .right{
+            font-weight: bold;
+            color: rgb(10, 152, 10);
+            margin-right: 5px;
+        }
+        .wrong{
+            font-weight: bold;
+            color: red;
+            margin-right: 5px;
+        }
+        .button{
+            text-align: center;
+            background: linear-gradient(225deg,rgb(32, 24, 84),rgb(4, 72, 83));
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="link">
+            <a href="">Home</a>
+            <a href="">About</a>
+            <a href="">Service</a>
+            <a href="">Price</a>
+            <a href="">Contact</a>
+        </header>
+        <h1 class="heading">PRICING TABLE</h1>
+        <div class="range">
+            <div class="name" id="basic">BASIC</div>
+            <div class="name" id="standard">STANDARD</div>
+            <div class="name" id="premium">PREMIUM</div>
+        </div>
+        <div id="info-container">
+            <div id="info-basic">
+                <p class="number">$5</p>
+                <p><span class="right">✔</span>Your Test Here</p>
+                <p><span class="right">✔</span>Sample Test Here</p>
+                <p><span class="wrong">✘</span>Test Here</p>
+                <p><span class="wrong">✘</span>Your Sample Test Here</p>
+                <p><span class="right">✔</span>Your Test Here</p>
+                <p><span class="wrong">✘</span>Your Test Input</p>
+                <button class="button">BUY NOW</button>
+            </div>
+            <div id="info-standard">
+                <p class="number">$15</p>
+                <p><span class="right">✔</span>Your Test Here</p>
+                <p><span class="right">✔</span>Sample Test Here</p>
+                <p><span class="wrong">✘</span>Test Here</p>
+                <p><span class="right">✔</span>Your Sample Test Here</p>
+                <p><span class="right">✔</span>Your Test Here</p>
+                <p><span class="wrong">✘</span>Your Test Input</p>
+                <button class="button">BUY NOW</button>
+            </div>
+            <div id="info-premium">
+                <p class="number">$25</p>
+                <p><span class="right">✔</span>Your Test Here</p>
+                <p><span class="right">✔</span>Sample Test Here</p>
+                <p><span class="right">✔</span>Test Here</p>
+                <p><span class="right">✔</span>Your Sample Test Here</p>
+                <p><span class="right">✔</span>Your Test Here</p>
+                <p><span class="right">✔</span>Your Test Input</p>
+                <button class="button">BUY NOW</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
