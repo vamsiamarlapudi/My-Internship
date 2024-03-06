@@ -1,88 +1,79 @@
-'use strict';
+const addBtn = document.querySelector("#add-btn");
+const newTaskInput = document.querySelector("#wrapper input");
+const tasksContainer = document.querySelector("#tasks");
+const error = document.getElementById("error");
+const countValue = document.querySelector(".count-value");
 
-// modal variables
-const modal = document.querySelector('[data-modal]');
-const modalCloseBtn = document.querySelector('[data-modal-close]');
-const modalCloseOverlay = document.querySelector('[data-modal-overlay]');
+let taskCount = 0;
 
-// modal function
-const modalCloseFunc = function () { modal.classList.add('closed') }
+const displayCount = (taskCount) => {
+    countValue.innerText = taskCount;
+};
 
-// modal eventListener
-modalCloseOverlay.addEventListener('click', modalCloseFunc);
-modalCloseBtn.addEventListener('click', modalCloseFunc);
-
-
-
-
-
-// notification toast variables
-const notificationToast = document.querySelector('[data-toast]');
-const toastCloseBtn = document.querySelector('[data-toast-close]');
-
-// notification toast eventListener
-toastCloseBtn.addEventListener('click', function () {
-  notificationToast.classList.add('closed');
-});
-
-
-
-
-
-// mobile menu variables
-const mobileMenuOpenBtn = document.querySelectorAll('[data-mobile-menu-open-btn]');
-const mobileMenu = document.querySelectorAll('[data-mobile-menu]');
-const mobileMenuCloseBtn = document.querySelectorAll('[data-mobile-menu-close-btn]');
-const overlay = document.querySelector('[data-overlay]');
-
-for (let i = 0; i < mobileMenuOpenBtn.length; i++) {
-
-  // mobile menu function
-  const mobileMenuCloseFunc = function () {
-    mobileMenu[i].classList.remove('active');
-    overlay.classList.remove('active');
-  }
-
-  mobileMenuOpenBtn[i].addEventListener('click', function () {
-    mobileMenu[i].classList.add('active');
-    overlay.classList.add('active');
-  });
-
-  mobileMenuCloseBtn[i].addEventListener('click', mobileMenuCloseFunc);
-  overlay.addEventListener('click', mobileMenuCloseFunc);
-
-}
-
-
-
-
-
-// accordion variables
-const accordionBtn = document.querySelectorAll('[data-accordion-btn]');
-const accordion = document.querySelectorAll('[data-accordion]');
-
-for (let i = 0; i < accordionBtn.length; i++) {
-
-  accordionBtn[i].addEventListener('click', function () {
-
-    const clickedBtn = this.nextElementSibling.classList.contains('active');
-
-    for (let i = 0; i < accordion.length; i++) {
-
-      if (clickedBtn) break;
-
-      if (accordion[i].classList.contains('active')) {
-
-        accordion[i].classList.remove('active');
-        accordionBtn[i].classList.remove('active');
-
-      }
-
+const addTask = () => {
+    const taskName = newTaskInput.value.trim();
+    error.style.display = "none";
+    if(!taskName){
+        setTimeout(() => {
+            error.style.display = "block";
+        }, 200);
+        return;
     }
 
-    this.nextElementSibling.classList.toggle('active');
-    this.classList.toggle('active');
+    const task = `<div class="task">
+    <input type="checkbox" class="task-check">
+    <span class="taskname">${taskName}</span>
+    <button class="edit">
+    <i class = "fa-solid fa-pen-to-square"></i>
+    </button>
+    <button class="delete">
+    <i class = "fa-solid fa-trash"></i>
+    </button>
+    </div>`
 
-  });
+    tasksContainer.insertAdjacentHTML("beforeend", task);
 
+    const deleteButtons = document.querySelectorAll(".delete");
+    deleteButtons.forEach((button) => {
+        button.onclick = () => {
+            button.parentNode.remove();
+            taskCount -= 1;
+            displayCount(taskCount);
+        };
+    });
+
+    const editButtons = document.querySelectorAll(".edit");
+    editButtons.forEach((editbtn) => {
+        editbtn.onclick = (e) => {
+            let targetElement = e.target;
+            if(!(e.target.className == "edit")){
+                targetElement = e.target.parentElement;
+            }
+            newTaskInput.value = targetElement.previousElementSibling?.innerText;
+            targetElement.parentNode.remove();
+            taskCount -= 1;
+            displayCount(taskCount);
+        };
+    });
+    const tasksCheck = document.querySelectorAll(".task-check");
+    tasksCheck.forEach((checkBox) => {
+        checkBox.onchange = () => {
+            checkBox.nextElementSibling.classList.toggle("completed");
+            if(checkBox.checked){
+                taskCount -= 1;
+            }else{
+                taskCount += 1;
+            }
+            displayCount(taskCount);
+        };
+    });
+    taskCount += 1;
+    displayCount(taskCount);
+    newTaskInput.value = "";
+};
+addBtn.addEventListener("click", addTask);
+window.onload  = () => {
+    taskCount = 0;
+    displayCount(taskCount);
+    newTaskInput.value = "";
 }
